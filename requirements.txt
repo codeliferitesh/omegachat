@@ -1,6 +1,8 @@
 Flask==2.3.5
 Flask-SocketIO==6.5.4
 eventlet==0.33.3
+gunicorn==21.2.0
+
 
 #Code Written and Compiled By Ritesh @codeliferitesh You Can Thank Him For Projects AND Code
 #Be Helpful Be Happy as God is always saving from many problems 😚😎
