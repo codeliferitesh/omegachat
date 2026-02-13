@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Omega Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dark">
+
+<!-- ===== LOADING SCREEN ===== -->
+<div id="loadingScreen">
+    <h1>Omega Chat 💬</h1>
+</div>
+
+<div class="app hidden">
+
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="topbar">
+            <h1>Omega Chat 💬</h1>
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <!-- LOGIN -->
+        <div id="login" class="login">
+            <input id="username" placeholder="Enter Username" type="text">
+            <button onclick="createRoom()">Create Room</button>
+            <input id="roomInput" placeholder="Room Code" type="text">
+            <button onclick="joinRoom()">Join Room</button>
+        </div>
+
+        <!-- CHAT -->
+        <div id="chat" class="chat hidden">
+
+            <!-- CHAT HEADER -->
+            <div class="chat-header">
+                <div>
+                    <h3 id="roomCode">Room: </h3>
+                    <p id="usersCount">0 Members</p>
+                </div>
+                <div class="chat-header-btns">
+                    <button id="destroyBtn" class="hidden" onclick="destroyRoom()">Destroy Room</button>
+                    <button onclick="leaveRoom()">Leave</button>
+                </div>
+            </div>
+
+            <!-- MESSAGES -->
+            <div id="messages"></div>
+
+            <!-- TYPING FIRE -->
+            <div id="typingIndicator"></div>
+
+            <!-- INPUT BAR -->
+            <div class="input-bar">
+                <input id="messageInput" placeholder="Type a message..." type="text">
+                <label for="imageInput" class="file-btn">Choose Image</label>
+                <input type="file" id="imageInput" accept="image/*">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    Made with 💖 by UseR
+</footer>
+
+<script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+<script src="/static/script.js"></script>
+</body>
+</html>

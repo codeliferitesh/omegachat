@@ -1,0 +1,398 @@
+/* ===== GLOBAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+}
+
+body.dark {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+body.light {
+    background: #f1f5f9;
+    color: #111827;
+}
+
+/* ===== LOADING SCREEN ===== */
+#loadingScreen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+    color: white;
+    font-size: 48px;
+    font-weight: 800;
+    z-index: 9999;
+}
+
+/* ===== APP CARD ===== */
+.app {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.card {
+    width: 100%;
+    max-width: 800px;
+    height: 680px;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    background: linear-gradient(145deg,#ffffff,#f1f5f9);
+    transition: 0.3s;
+}
+
+body.dark .card {
+    background: linear-gradient(145deg,#1e293b,#0f172a);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+}
+
+/* ===== HEADER ===== */
+.topbar {
+    padding: 22px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* ===== THEME SWITCH ===== */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+input:checked + .slider:before {
+    transform: translateX(32px);
+}
+
+/* ===== LOGIN ===== */
+.login {
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.login input {
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+body.dark .login input {
+    background: #334155;
+    color: white;
+}
+
+body.light .login input {
+    background: #f1f5f9;
+    color: #111827;
+}
+
+.login input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #2563eb;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    padding: 12px 20px;
+    border-radius: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+    transition: 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37,99,235,0.45);
+}
+
+/* ===== CHAT ===== */
+.chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(100,100,100,0.15);
+}
+
+.chat-header-btns {
+    display: flex;
+    gap: 12px;
+}
+
+#roomCode {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#usersCount {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+#messages {
+    flex: 1;
+    padding: 25px 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+}
+
+/* ===== MESSAGE BUBBLES ===== */
+.bubble {
+    padding: 14px 18px;
+    border-radius: 20px;
+    max-width: 65%;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    background: #e2e8f0;
+    color: #111827;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    animation: fadeIn 0.4s ease;
+}
+
+body.dark .bubble {
+    background: #334155;
+    color: #e2e8f0;
+}
+
+.bubble.me {
+    margin-left: auto;
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+}
+
+.bubble img {
+    max-width: 230px;
+    border-radius: 16px;
+    margin-top: 8px;
+    transition: 0.3s;
+}
+
+/* ===== INPUT BAR ===== */
+.input-bar {
+    padding: 18px 30px;
+    display: flex;
+    gap: 12px;
+    border-top: 1px solid rgba(100,100,100,0.15);
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 0 0 22px 22px;
+    flex-shrink: 0;
+}
+
+body.light .input-bar {
+    background: linear-gradient(135deg, #ffffff, #f1f5f9);
+}
+
+/* ===== MESSAGE INPUT ===== */
+.input-bar input[type="text"] {
+    padding: 14px 20px;
+    border-radius: 22px;
+    border: none;
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    transition: all 0.3s;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+}
+
+body.light .input-bar input[type="text"] {
+    background: rgba(0,0,0,0.05);
+    color: #111827;
+}
+
+.input-bar input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(37,99,235,0.6);
+}
+
+/* ===== CUSTOM FILE BUTTON ===== */
+.input-bar input[type="file"] {
+    display: none;
+}
+
+.input-bar label.file-btn {
+    padding: 10px 18px;
+    background: linear-gradient(135deg,#f59e0b,#f97316);
+    border-radius: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(245,158,11,0.4);
+}
+
+.input-bar label.file-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(245,158,11,0.6);
+}
+
+/* ===== SEND BUTTON ===== */
+.input-bar button {
+    padding: 12px 20px;
+    border-radius: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background: linear-gradient(135deg,#2563eb,#3b82f6);
+    transition: all 0.3s;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.5);
+}
+
+.input-bar button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(37,99,235,0.6);
+}
+
+/* ===== TYPING FIRE ===== */
+#typingIndicator {
+    height: 24px;
+    font-weight: 500;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #facc15;
+    font-family: monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+.fire {
+    display: inline-block;
+    animation: flame 1s infinite;
+}
+
+.fire:nth-child(2) { animation-delay: 0.2s; }
+.fire:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes flame {
+    0% { transform: translateY(0) scale(1); opacity:0.6; }
+    50% { transform: translateY(-6px) scale(1.2); opacity:1; }
+    100% { transform: translateY(0) scale(1); opacity:0.6; }
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 18px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    background: linear-gradient(120deg, #2563eb, #3b82f6);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+/* ===== FOOTER ANIMATION ===== */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== HIDDEN CLASS ===== */
+.hidden { display: none; }
+
+/* ===== BUBBLE FADE ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 500px) {
+    .card { height: 100%; border-radius: 0; }
+    #messages { padding: 15px; }
+    .input-bar { padding: 12px; gap: 6px; }
+    .topbar { padding: 15px; }
+}
+
